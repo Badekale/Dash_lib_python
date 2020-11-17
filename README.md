@@ -1,4 +1,4 @@
-# Dash_lib_python
+# Using Dash Library in python 
  I made an interactive dashboard using **Dash library** in python,
  the dashboard makes use of a trained model of the iris dataset
  in sklearn. The model was trained using **Random Forest Classifier**.
