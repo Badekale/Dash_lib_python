@@ -39,7 +39,18 @@ app = dash.Dash()
 #    Callback fuction with Sliders values as inputs and Prediction as Output
 
 # We apply basic HTML formatting to the layout
-# 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
 app.layout = html.Div(style={'textAlign': 'center', 'width': '800px', 'font-family': 'Verdana' },
                         children=[
                         # The same logic is applied to the following names / sliders
@@ -53,8 +64,11 @@ app.layout = html.Div(style={'textAlign': 'center', 'width': '800px', 'font-fami
                             type="number",
                             min=1,
                             max=10,
+                        #  debounce delay the reaction of the value entered
+                        #  tab or enter as to be pressed before the number is updated
+                            debounce=True,
                             value = 3,
-                            step=0.2,
+                            step=0.1,
                             placeholder="sepal length (cm)"),
 
                         # dcc.Slider(
@@ -128,7 +142,7 @@ def update_prediction(X1_slider, X2_slider, X3_slider,X4_slider):
 
     # And retuned to the Output of the callback function
     return f'The feature indicated have {probability:.0f}% probability of it been a {flower} iris flower'
-
+# print('The feature indicated have', color.BOLD + f'{probability:.0f}%' + color.End ,f'probability of it been a {flower} iris flower')
 if __name__ == "__main__":
     app.run_server(debug=True)
     # app.run_server(debug=True,port=8080,host='0.0.0.0')
